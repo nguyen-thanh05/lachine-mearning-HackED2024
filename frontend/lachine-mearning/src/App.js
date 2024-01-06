@@ -13,7 +13,7 @@ function App() {
 
 
   const backendUrl = "http://localhost:8000";
-  const userID = 2; // hardcoded userID for now
+  const userID = 4; // hardcoded userID for now
 
   const personInputHandler = () => {
     // Trigger the file input programmatically
@@ -31,14 +31,16 @@ function App() {
     const file = event.target.files[0];
 
     // Update the state or perform further actions with the selected image
-    setPersonImage(URL.createObjectURL(file));
+    //setPersonImage(URL.createObjectURL(file));
+    setPersonImage(file);
   }
 
   const clothingChangeHandler = (event) => {
      const file = event.target.files[0];
 
     // Update the state or perform further actions with the selected image
-    setClothingImage(URL.createObjectURL(file));
+    //setClothingImage(URL.createObjectURL(file));
+    setClothingImage(file);
   }
 
     const submitImage = () => {
