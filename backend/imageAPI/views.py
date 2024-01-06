@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from user.models import User
+from .models import Images
 from rest_framework.parsers import MultiPartParser, FormParser
 
 
@@ -17,7 +18,9 @@ class imageEndPoint(APIView):
     serializer_class = ImagesSerializer
     parser_classes = (MultiPartParser, FormParser)
     def get(self, request, pk):
-        return Response({"message": "IMAGE Hello, world!"})
+        images = Images.objects.all()
+        serializer = ImagesSerializer(images, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, pk):
         # upload an image
@@ -32,7 +35,8 @@ class imageEndPoint(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     def delete(self, request, pk):
         # delete all images
-        User.objects.all().delete()
+        # delete all image of tihs user
+        Images.objects.filter(user=pk).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
