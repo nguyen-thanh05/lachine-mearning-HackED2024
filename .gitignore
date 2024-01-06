@@ -1,0 +1,8 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media/   # ignore django image folder
+myv1/  # my venv name haha
