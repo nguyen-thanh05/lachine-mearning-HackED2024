@@ -15,7 +15,7 @@ def person_upload_to(instance, filename):
 def cloth_person_upload_to(instance, filename):
     return 'cloth_person/{filename}'.format(filename=filename)
 
-class images(models.Model):
+class Images(models.Model):
     clothImage = models.ImageField(upload_to=upload_to, null=True, blank=True)
     personImage = models.ImageField(upload_to=upload_to, null=True, blank=True)
     clothPersonImage = models.ImageField(upload_to=upload_to, null=True, blank=True)
