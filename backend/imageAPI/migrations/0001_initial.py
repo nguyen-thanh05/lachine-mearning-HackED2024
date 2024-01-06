@@ -25,19 +25,19 @@ class Migration(migrations.Migration):
                 (
                     "clothImage",
                     models.ImageField(
-                        blank=True, null=True, upload_to=imageAPI.models.upload_to
+                        blank=True, null=True, upload_to=imageAPI.models.cloth_upload_to
                     ),
                 ),
                 (
                     "personImage",
                     models.ImageField(
-                        blank=True, null=True, upload_to=imageAPI.models.upload_to
+                        blank=True, null=True, upload_to=imageAPI.models.person_upload_to
                     ),
                 ),
                 (
                     "clothPersonImage",
                     models.ImageField(
-                        blank=True, null=True, upload_to=imageAPI.models.upload_to
+                        blank=True, null=True, upload_to=imageAPI.models.cloth_person_upload_to
                     ),
                 ),
                 ("descriptin", models.CharField(max_length=100)),

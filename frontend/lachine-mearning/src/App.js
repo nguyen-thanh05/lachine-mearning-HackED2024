@@ -1,12 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 import ImageUploading from 'react-images-uploading';
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 
+// import axios
+import  axios from 'axios';
 
 function App() {
   const [personImage, setPersonImage] = useState(null);
   const [clothingImage, setClothingImage] = useState(null);
+  const [resultImage, setResultImage] = useState(null);
+
+
+  const backendUrl = "http://localhost:8000";
+  const userID = 2; // hardcoded userID for now
 
   const personInputHandler = () => {
     // Trigger the file input programmatically
@@ -34,6 +41,38 @@ function App() {
     setClothingImage(URL.createObjectURL(file));
   }
 
+    const submitImage = () => {
+        console.log('submitting image with url: ' + backendUrl + `/user/${userID}/images/`);
+        let formData = new FormData();
+        formData.append('clothImage', clothingImage);
+        formData.append('personImage', personImage);
+
+        axios.post(backendUrl + `/user/${userID}/images/`, formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+            }
+        }
+        ).then((response) => {
+            console.log(response);
+            // get image url from response
+            let clothImgUrl = response.data.clothImage;
+            let personImgUrl = response.data.personImage;
+
+            setResultImage(backendUrl + clothImgUrl);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    useEffect(() => {
+        if (personImage && clothingImage) {
+            // Perform the submit action
+            // do fetch request to backend using backendUrl
+            //
+            submitImage();
+        }
+    }, [personImage, clothingImage]);
 
   return (
     <div className="App">
@@ -72,7 +111,15 @@ function App() {
               />
             </div>
           }
-        <img alt="Result"/> 
+        {resultImage ? 
+          <div className="image-container">
+            <img alt="Result" src={resultImage}/> 
+          </div>
+          : 
+            <div>
+              <button onClick={submitImage}>result</button>
+            </div>
+                }
       </header>
     </div>
   );

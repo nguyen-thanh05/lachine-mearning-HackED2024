@@ -10,5 +10,3 @@ class User(models.Model):
     userName = models.CharField(max_length=100, unique=True)
     name = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
-    id = models.AutoField(primary_key=True)
-
