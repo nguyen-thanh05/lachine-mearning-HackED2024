@@ -16,6 +16,10 @@ function App() {
   const [clothingImage, setClothingImage] = useState(null);
     const [clothingImageOriginal, setClothingImageOriginal] = useState(null);
     const [personImageOriginal, setPersonImageOriginal] = useState(null);
+
+
+
+
   const [resultImage, setResultImage] = useState(null);
 
 
@@ -126,7 +130,7 @@ function App() {
               </div>
 
             </section> : 
-              !resultImage ? <div className="loading-spinner"/> : <img alt="Resulting Image" src={personImage} />
+              !resultImage ? <div className="loading-spinner"/> : <img alt="Resulting Image" src={resultImage} />
             }
             </header>
     </div>
