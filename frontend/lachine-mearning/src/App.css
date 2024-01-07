@@ -21,6 +21,11 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
+
+.innerGrid {
+    display: grid;
+    grid-row: 1fr 5fr;
+}
 .sideBar {
     height: 100%;
     width: 100px;
