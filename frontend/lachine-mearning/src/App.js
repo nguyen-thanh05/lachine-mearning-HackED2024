@@ -86,11 +86,11 @@ function App() {
             // get image url from response
             let clothImgUrl = response.data.clothImage;
             let personImgUrl = response.data.personImage;
+            let clothPersonUrl = response.data.clothPersonImage; 
+            setResultImage(backendUrl +clothPersonUrl);
 
-            setResultImage(backendUrl + clothImgUrl);
 
-
-            setImgArray([...imgArray, {link: backendUrl + clothImgUrl}])
+            setImgArray([...imgArray, {link: backendUrl +clothPersonUrl}])
         }).catch((error) => {
             console.log(error);
         });
@@ -146,7 +146,7 @@ function App() {
                                     /> 
                     )}
                   </div>
-
+personImage
                   <div className="input-section">
                     {clothingImage ? (
                       <img className="image-container" alt="Selected Clothing" src={clothingImage} />
@@ -163,7 +163,7 @@ function App() {
                 </section> : 
                   !resultImage ? <div className="loading-spinner"/> : 
                   <div className="output-section">
-                    <img className="image-container" alt="Resulting Image" src={personImage} />
+                    <img className="image-container" alt="Resulting Image" src={resultImage} />
                     <h1 className="explanation"> RESULTING IMAGE!</h1> 
                     <button onClick={resetHandler}>reset</button>
                   </div>
