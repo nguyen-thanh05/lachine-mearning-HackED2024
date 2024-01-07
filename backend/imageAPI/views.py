@@ -18,7 +18,7 @@ class imageEndPoint(APIView):
     serializer_class = ImagesSerializer
     parser_classes = (MultiPartParser, FormParser)
     def get(self, request, pk):
-        images = Images.objects.all()
+        images = Images.objects.filter(user=pk)
         serializer = ImagesSerializer(images, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -28,7 +28,8 @@ class imageEndPoint(APIView):
         print(request.data)
         serializer = ImagesSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            userObj = User.objects.get(id=pk)
+            serializer.save(user=userObj)
             # to do 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         # get the user 

@@ -18,5 +18,6 @@ class Images(models.Model):
     personImage = models.ImageField(upload_to=person_upload_to, null=True, blank=True)
     clothPersonImage = models.ImageField(upload_to=cloth_person_upload_to, null=True, blank=True)
 
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE, null=True, blank=True)
 # description field where default is set to "no description"
     description = models.CharField(max_length=100, default="no description")
