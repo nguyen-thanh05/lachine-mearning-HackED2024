@@ -12,6 +12,7 @@ from rest_framework import status
 from user.models import User
 from .models import Images
 from rest_framework.parsers import MultiPartParser, FormParser
+import time
 
 
 class imageEndPoint(APIView):
@@ -31,6 +32,8 @@ class imageEndPoint(APIView):
             userObj = User.objects.get(id=pk)
             serializer.save(user=userObj)
             # to do 
+            # time
+            time.sleep(3)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         # get the user 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -39,7 +42,6 @@ class imageEndPoint(APIView):
         # delete all image of tihs user
         Images.objects.filter(user=pk).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 
 

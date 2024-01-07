@@ -3,6 +3,18 @@ import './App.css';
 import ImageUploading from 'react-images-uploading';
 import React, {useState, useEffect} from 'react';
 
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "./components/ui/navigation-menu"
+
+import { Button } from "./components/ui/button"
 // import axios
 import  axios from 'axios';
 
@@ -81,17 +93,35 @@ function App() {
   return (
     <div className="App">
       <div className="top-bar">
-        <h1 className="title">Picture Me</h1>
-        <h1 className="explanation">Next generation e-shopping software</h1>
+        
+        <div >
+            <h1 className="title">Picture Me</h1>
+        </div>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+              </NavigationMenuContent>
+              <NavigationMenuTrigger>Item two</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
-          <header className="App-header">
+
+
+        <header className="App-header">
             {(!personImage || !clothingImage) ? <section className="content-column">
               <div className="input-section">
                 {personImage ? (
                   <img className="image-container"alt="Upload Photo Here" src={personImage} />
                 ) : (
                   <div>
-                    <button onClick={personInputHandler}>Upload Photo of Person</button>
+                    <Button onClick={personInputHandler}>Upload Photo of Person</Button>
                     <input
                       type="file"
                       id="personInput"
@@ -108,7 +138,7 @@ function App() {
                   <img className="image-container" alt="Selected Clothing" src={clothingImage} />
                 ) : (
                   <div>
-                    <button onClick={clothingInputHandler}>Upload Photo of Clothing</button>
+                    <Button onClick={clothingInputHandler}>Upload Photo of Clothing</Button>
                     <input
                       type="file"
                       id="clothingInput"
