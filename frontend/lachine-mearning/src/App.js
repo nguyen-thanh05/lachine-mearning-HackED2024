@@ -1,8 +1,3 @@
-
-
-
-
-
 import logo from './logo.svg';
 import './App.css';
 import ImageUploading from 'react-images-uploading';
@@ -24,7 +19,7 @@ function App() {
 
 
   const backendUrl = "http://localhost:8000";
-  const userID = 4; // hardcoded userID for now
+  const userID = 1; // hardcoded userID for now
 
   const personInputHandler = () => {
     const fileInput = document.getElementById('personInput');
@@ -93,9 +88,7 @@ function App() {
             {(!personImage || !clothingImage) ? <section className="content-column">
               <div className="input-section">
                 {personImage ? (
-                  <div className="image-container">
-                    <img alt="Upload Photo Here" src={personImage} />
-                  </div>
+                  <img className="image-container"alt="Upload Photo Here" src={personImage} />
                 ) : (
                   <div>
                     <button onClick={personInputHandler}>Upload Photo of Person</button>
@@ -112,9 +105,7 @@ function App() {
 
               <div className="input-section">
                 {clothingImage ? (
-                  <div className="image-container">
-                    <img alt="Selected Clothing" src={clothingImage} />
-                  </div>
+                  <img className="image-container" alt="Selected Clothing" src={clothingImage} />
                 ) : (
                   <div>
                     <button onClick={clothingInputHandler}>Upload Photo of Clothing</button>
@@ -130,7 +121,11 @@ function App() {
               </div>
 
             </section> : 
-              !resultImage ? <div className="loading-spinner"/> : <img alt="Resulting Image" src={resultImage} />
+              !resultImage ? <div className="loading-spinner"/> : 
+              <div className="output-section">
+                <img className="image-container" alt="Resulting Image" src={personImage} />
+              </div>
+
             }
             </header>
     </div>

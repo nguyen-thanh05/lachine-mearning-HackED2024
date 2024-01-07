@@ -18,13 +18,17 @@
 }
 
 .image-container {
+  width: auto;
+  height: auto;
   max-width: 300px;
   max-height: 300px;
   overflow: hidden;
+  margin: auto;
 }
 
 .content-column {
   display: grid;
+  align-items: center;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
@@ -35,6 +39,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: auto;
 }
 
 .button {
