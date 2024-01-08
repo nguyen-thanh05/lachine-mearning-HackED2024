@@ -22,7 +22,7 @@ const FileUpload = ({onChange, onClick, ...otherProps}) => {
         <UploadFileBtn type="button" onClick={onClick}>
 
           <i className="fas fa-file-upload" />
-          <span style={{width:"75%"}}> Upload {otherProps.person? " a person image": " a cloth image"}</span>
+          <span style={{width:"75%"}}> Upload {!otherProps.person? " a person image": " a cloth image"}</span>
         </UploadFileBtn>
         <FormField
           type="file"

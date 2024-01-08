@@ -79,13 +79,14 @@ class imageEndPoint(APIView):
             
             output = torchvision.utils.make_grid(test, padding=2, normalize=True)
             image_name = outputImgPath +  "/output" + str(serializer.data['id']) + ".png"
+            print("image name", image_name)
             print("serizlier id",   serializer.data['id'])
             print("output path", outputImgPath) 
             #cv2.imwrite(image_name, np.transpose(output, (1,2,0)))
             save_image(output, image_name)
             
-            newmodel = Images(clothImage=serializer.data['clothImage'], personImage=serializer.data['personImage'], clothPersonImage=File(open(image_name, 'rb')), user=userObj)
 
+            newmodel = Images(clothImage=serializer.data['clothImage'], personImage=serializer.data['personImage'], clothPersonImage=File(open(image_name, 'rb')), user=userObj)
             serializer = ImagesSerializer(newmodel)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         # get the user 

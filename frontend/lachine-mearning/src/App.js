@@ -86,7 +86,10 @@ function App() {
             // get image url from response
             let clothImgUrl = response.data.clothImage;
             let personImgUrl = response.data.personImage;
-            let clothPersonUrl = response.data.clothPersonImage; 
+            let clothPersonUrl = response.data.clothPersonImage.slice(88);
+            ; 
+            console.log(personImgUrl)
+            console.log(clothPersonUrl)
             setResultImage(backendUrl +clothPersonUrl);
 
 
